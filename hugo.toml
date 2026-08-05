@@ -16,12 +16,12 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [[params.phases]]
   name = "Key management"
   status = "ready"
-  blurb = "`CreateKeys` generates the RSA keypair and self-signed certificate that `eyaml createkeys` produces; `LoadPrivateKey` / `LoadCertificate` read PEM / PKCS8 material."
+  blurb = "`CreateKeys` generates the RSA keypair and self-signed certificate that `eyaml createkeys` produces; `LoadPrivateKey` / `LoadCertificate` read PEM / PKCS8 material; `LoadGPGKeyRing` reads OpenPGP keyring material."
 [[params.phases]]
-  name = "Standard-library crypto only"
+  name = "PKCS7 crypto"
   status = "ready"
   blurb = "Built on `crypto/rsa`, `crypto/x509`, `crypto/aes`, `crypto/cipher`, `crypto/rand`, `encoding/pem` and `encoding/asn1`; the PKCS#7 / CMS structure is hand-assembled — no third-party crypto, no cgo."
 [[params.phases]]
-  name = "Pluggable schemes (gpg)"
-  status = "planned"
-  blurb = "`Encryptor` is a seam; the hiera-eyaml `gpg` scheme is intentionally deferred, as it would pull in OpenPGP machinery beyond the standard-library crypto surface."
+  name = "GPG encryptor"
+  status = "ready"
+  blurb = "`NewGPG` mirrors hiera-eyaml's `gpg` (GPGME) encryptor on the pure-Go, CGO-free `ProtonMail/go-crypto/openpgp`, producing `ENC[GPG,<base64>]` tokens byte-for-byte interoperable with real `gpg --encrypt` / `--decrypt`."
