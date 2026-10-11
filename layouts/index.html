@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{/* Dark Reader repaints pages that already draw their own dark theme, as this one does: ask it to stand aside. */}}
+<meta name="darkreader-lock">
 <title>{{ .Site.Title }} — hiera-eyaml PKCS7 + GPG encryption in pure Go, no cgo</title>
 <meta name="description" content="go-eyaml — a pure-Go (CGO_ENABLED=0) implementation of the hiera-eyaml PKCS7 and GPG encryption schemes: ENC[PKCS7,…] and ENC[GPG,…] tokens.">
 <style>
